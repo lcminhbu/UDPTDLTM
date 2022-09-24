@@ -6,7 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from threading import Thread
+import threading
 import numpy as np
+import logging
 
 
 os.environ['PATH'] += '/usr/lib/chromium/chromium'
@@ -14,6 +16,12 @@ os.environ['PATH'] += '/usr/lib/chromium/chromium'
 
 
 CONNECTION_STRING = "mongodb+srv://username:Password123@cluster0.g3tu9j6.mongodb.net/test"
+
+logging.basicConfig(filename="logger.log",
+                    filemode='a',
+                    format='%(asctime)s , %(thread)d : %(name)s %(levelname)s %(message)s',
+                    datefmt='%H:%M:%S',
+                    level=logging.INFO)
 
 db = get_database(CONNECTION_STRING, "test")
 cl = create_collection("store_link", db)
@@ -55,8 +63,8 @@ def see_more(driver):
                     break
                 else:
                     time.sleep(SCROLL_PAUSE_TIME)
-        except Exception as e: 
-            print(e)
+        except Exception as e:
+            logging.info("Done see more")
             break
     
 def get_info(link):
@@ -64,13 +72,25 @@ def get_info(link):
         driver = webdriver.Chrome()
         driver.get(link)
         driver.implicitly_wait(15)
+
+        name = driver.find_element_by_css_selector(".main-info-title > h1").text
+        review_count = driver.find_element_by_class_name("microsite-review-count").text
+        try:
+            address = driver.find_element_by_xpath('//div[@itemprop="address"]')
+            # address = address.find_elements_by_tag_name('span')
+            # ad=""
+            # for a in address:
+            #     ad += a.text
+            # print(ad)
+        except:
+            logging.error("Cannot get address")
+        logging.info("Getting scores")
         avg_score = driver.find_element_by_class_name("microsite-point-avg ").text
 
         points = driver.find_elements_by_class_name("microsite-top-points")
         try:
             space_point = points[0].find_element_by_class_name("avg-txt-highlight").text
         except:
-            print("RED")
             space_point = points[0].text
         try:
             position_point = points[1].find_element_by_class_name("avg-txt-highlight").text
@@ -88,7 +108,8 @@ def get_info(link):
             price_point = points[4].find_element_by_class_name("avg-txt-highlight").text
         except:
             price_point = points[4].text
-    
+
+        logging.info("Getting views and food link")
         views = driver.find_element_by_class_name("total-views").find_element_by_tag_name("span").text
         try:
             driver.find_element_by_class_name("view-all-menu").click()
@@ -97,9 +118,10 @@ def get_info(link):
             close_btn = driver.find_element_by_class_name("modalCloseImg.simplemodal-close")
             close_btn.click()
         except:
-            print("EMPTY")
+            logging.info("Food link empty")
             food_link = ""
-            
+        
+        logging.info("Getting other info")
         other_info = driver.find_elements_by_class_name("new-detail-info-area")
         t1 = {}
         for i in other_info:
@@ -107,22 +129,23 @@ def get_info(link):
             value = i.find_element_by_css_selector("div:nth-child(2)").text
             t1[label] = value
             
+        logging.info("Getting properties")
         micro_property = driver.find_elements_by_css_selector("div.microsite-res-info-properties > div > div > ul > li")
         available = []
         for p in micro_property:
             if p.get_attribute("class") != "none":
                 available.append(p.find_element_by_css_selector("a:nth-child(2)").text)
-        
+        logging.info("Getting branches")
         try:
             list_tools = driver.find_element_by_css_selector("ul.list-tool")
             branch_link = list_tools.find_element_by_link_text("Chi nhánh")
-            branch_link.click()
-            branch_list = driver.find_element_by_css_selector("ul.ldc-items-list.ldc-column")
-            driver.back()
-            driver.implicitly_wait(15)
-            print("Có chi nhánh")
+            # branch_link.click()
+            # branch_list = driver.find_element_by_css_selector("ul.ldc-items-list.ldc-column")
+            # driver.back()
+            # driver.implicitly_wait(15)
         except:
-            print("Ko có chi nhánh")
+            logging.info("No branch")
+        logging.info("Getting parking lots")
         try:
             list_tools = driver.find_element_by_css_selector("ul.list-tool")
             parking_lot_link = list_tools.find_element_by_link_text("Bãi đỗ xe")
@@ -143,15 +166,15 @@ def get_info(link):
                         "opening_time": pl_opening_time,
                         "capacity": pl_capacity
                     })
-                except:
-                    print("ERRORRRR")
-                    print(len(address))
-            print("Có bãi xe")
+                except Exception as e:
+                    logging.error("Error in parking lots: "+ e)
         except:
-            print("Không có bãi xe")
+            logging.info("No parking lot")
             pls = []
         driver.close()
         t2 = {
+            "name": name,
+            "review_count": review_count,
             "average_score": avg_score,
             "space_score": space_point,
             "position_score": position_point,
@@ -166,16 +189,30 @@ def get_info(link):
             "comment_list": []
         }
         t2.update(t1)
+        logging.info("Done link: " + link)
         return t2
     except Exception as e: 
-        print(e)
-        print(link)
-            
-def thread(link_list, collection): 
-    for l in link_list:
-        add_document(get_info(l), collection)
-        time.sleep(2)
+        logging.error("Error while crawling: "+ e)
+        logging.error("Error link: "+ link)
 
+done = 0
+thread_lock = threading.Lock()
+def thread(link_list, collection):
+    global done
+    logging.info("Thread started")
+    for l in link_list:
+        logging.info("Link: " + l)
+        t = get_info(l)
+        try:
+            add_document(t, collection)
+            thread_lock.acquire()
+            done += 1
+            logging.info("Done: " + str(done))
+            thread_lock.release()
+        except Exception as e:
+            logging.error("Error while adding document to collection: "+ e)
+        time.sleep(1)
+    logging.info("Thread ended")
 
 cl2 = create_collection("store_info", db)
 # for i in documents["href"]:
@@ -185,5 +222,5 @@ devided = np.array_split(documents["href"],THREAD_NUMBER)
 
 for d in devided:
     th = Thread(target=thread, args=[d, cl2])
-    time.sleep(2)
+    time.sleep(1)
     th.start()

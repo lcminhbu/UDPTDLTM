@@ -18,8 +18,8 @@ os.environ['PATH'] += '/usr/lib/chromium/chromium'
 CONNECTION_STRING = "mongodb+srv://username:Password123@cluster0.g3tu9j6.mongodb.net/test"
 
 logging.basicConfig(filename="logger.log",
-                    filemode='a',
-                    format='%(asctime)s , %(thread)d : %(name)s %(levelname)s %(message)s',
+                    filemode='w',
+                    format='%(asctime)s , %(thread)d %(levelname)s : %(message)s',
                     datefmt='%H:%M:%S',
                     level=logging.INFO)
 
@@ -64,7 +64,6 @@ def see_more(driver):
                 else:
                     time.sleep(SCROLL_PAUSE_TIME)
         except Exception as e:
-            logging.info("Done see more")
             break
     
 def get_info(link):
@@ -72,16 +71,21 @@ def get_info(link):
         driver = webdriver.Chrome()
         driver.get(link)
         driver.implicitly_wait(15)
-
-        name = driver.find_element_by_css_selector(".main-info-title > h1").text
-        review_count = driver.find_element_by_class_name("microsite-review-count").text
         try:
-            address = driver.find_element_by_xpath('//div[@itemprop="address"]')
-            # address = address.find_elements_by_tag_name('span')
-            # ad=""
-            # for a in address:
-            #     ad += a.text
-            # print(ad)
+            name = driver.find_element_by_css_selector(".main-info-title > h1").text
+        except Exception as e:
+            logging.error("Error while getting name")
+            logging.error(e)
+        try:
+            review_count = driver.find_element_by_class_name("microsite-review-count").text
+        except Exception as e:
+            logging.error("Error while getting review count")
+            logging.error(e)
+        try:
+            addr = driver.find_element_by_xpath('//span[@itemprop="streetAddress"]').text
+            print(addr)
+            district = driver.find_element_by_xpath('//span[@itemprop="addressLocality"]').text
+            print(district)
         except:
             logging.error("Cannot get address")
         logging.info("Getting scores")
@@ -175,6 +179,8 @@ def get_info(link):
         t2 = {
             "name": name,
             "review_count": review_count,
+            "address": addr,
+            "district": district,
             "average_score": avg_score,
             "space_score": space_point,
             "position_score": position_point,
@@ -192,7 +198,8 @@ def get_info(link):
         logging.info("Done link: " + link)
         return t2
     except Exception as e: 
-        logging.error("Error while crawling: "+ e)
+        logging.warn("Error while crawling")
+        logging.error(e)
         logging.error("Error link: "+ link)
 
 done = 0
@@ -210,7 +217,8 @@ def thread(link_list, collection):
             logging.info("Done: " + str(done))
             thread_lock.release()
         except Exception as e:
-            logging.error("Error while adding document to collection: "+ e)
+            logging.error("Error while adding document to collection: ")
+            logging.error(e)
         time.sleep(1)
     logging.info("Thread ended")
 

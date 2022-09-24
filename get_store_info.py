@@ -5,9 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from threading import Thread
 import threading
-import numpy as np
 import logging
 
 
@@ -83,9 +81,7 @@ def get_info(link):
             logging.error(e)
         try:
             addr = driver.find_element_by_xpath('//span[@itemprop="streetAddress"]').text
-            print(addr)
             district = driver.find_element_by_xpath('//span[@itemprop="addressLocality"]').text
-            print(district)
         except:
             logging.error("Cannot get address")
         logging.info("Getting scores")
@@ -225,10 +221,10 @@ def thread(link_list, collection):
 cl2 = create_collection("store_info", db)
 # for i in documents["href"]:
 #     get_info(i)
-THREAD_NUMBER = 4
-devided = np.array_split(documents["href"],THREAD_NUMBER)
+# THREAD_NUMBER = 4
+# devided = np.array_split(documents["href"],THREAD_NUMBER)
 
-for d in devided:
-    th = Thread(target=thread, args=[d, cl2])
-    time.sleep(1)
-    th.start()
+# for d in devided:
+#     th = Thread(target=thread, args=[d, cl2])
+#     time.sleep(1)
+#     th.start()

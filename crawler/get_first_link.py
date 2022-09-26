@@ -1,8 +1,5 @@
-import sys
-sys.path.append("..")
-
-from UDPTDLTM.configuration import *
-from UDPTDLTM.functions.databases import *
+from configuration import *
+from functions.databases import *
 
 import os
 import time

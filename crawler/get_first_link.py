@@ -1,17 +1,23 @@
+import sys
+sys.path.append("..")
+
+from UDPTDLTM.configuration import *
+from UDPTDLTM.functions.databases import *
+
 import os
+import time
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
-from functions.databases import *
 
-os.environ['PATH'] += '/usr/lib/chromium/chromium'
+os.environ['PATH'] += unix_environ_path
 
 driver = webdriver.Chrome()
 
-driver.get("https://www.foody.vn/ho-chi-minh")
+driver.get(foody_link)
 
 def login(username, password):
     login_button = driver.find_element_by_css_selector("#accountmanager > a")
@@ -76,9 +82,7 @@ def get_all_category_region_district():
 
     return categories, regions, districts
 
-username = "mailtemp314@gmail.com"
-password = "thisistempmail"
-login(username, password)
+login(foody_account['username'], foody_account['password'])
 
 categories, regions, districts = get_all_category_region_district()
 
@@ -99,9 +103,7 @@ store_list = store_list.find_elements_by_class_name("content-item.ng-scope")
 print(len(store_list))
 
 
-CONNECTION_STRING = "mongodb+srv://username:Password123@cluster0.g3tu9j6.mongodb.net/test"
-
-db = get_database(CONNECTION_STRING, "test")
+db = get_database(mongodb_connection_string, "test")
 cl = create_collection("store_link", db)
 for s in store_list:
     title = s.find_element_by_class_name("title.fd-text-ellip")
@@ -118,5 +120,3 @@ for s in store_list:
     add_document(document, cl)
 
 print(get_all_documents(cl))
-# time.sleep(15)
-# driver.quit()

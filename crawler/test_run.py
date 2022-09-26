@@ -1,4 +1,5 @@
-from get_store_info import *
+from UDPTDLTM.crawler.get_store_info import *
+
 import pandas as pd
 import numpy as np
 from threading import Thread

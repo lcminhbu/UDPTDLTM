@@ -1,19 +1,20 @@
-from functions.databases import *
+import sys
+sys.path.append("..")
+
+from UDPTDLTM.functions.databases import *
+from UDPTDLTM.configuration import *
+
 import os
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import time
 import threading
 import logging
 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-os.environ['PATH'] += '/usr/lib/chromium/chromium'
-
-
-
-CONNECTION_STRING = "mongodb+srv://username:Password123@cluster0.g3tu9j6.mongodb.net/test"
+os.environ['PATH'] += unix_environ_path
 
 logging.basicConfig(filename="logger.log",
                     filemode='w',
@@ -21,7 +22,7 @@ logging.basicConfig(filename="logger.log",
                     datefmt='%H:%M:%S',
                     level=logging.INFO)
 
-db = get_database(CONNECTION_STRING, "test")
+db = get_database(mongodb_connection_string, "test")
 cl = create_collection("store_link", db)
 
 documents = get_all_documents(cl)

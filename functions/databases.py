@@ -17,3 +17,7 @@ def add_document(document, collection):
 def get_all_documents(collection):
     return pd.DataFrame(collection.find())
 
+
+def collection_to_csv(collection, path):
+    df = get_all_documents(collection)
+    df.to_csv(path)

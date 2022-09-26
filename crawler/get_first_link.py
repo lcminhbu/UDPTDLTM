@@ -1,3 +1,8 @@
+import sys
+sys.path.append(__file__[:__file__.find('UDPTDLTM/')+9])
+# For notebook: sys.path.append("..")
+
+
 from configuration import *
 from functions.databases import *
 
@@ -28,7 +33,7 @@ def login(username, password):
     login.click()
     driver.implicitly_wait(15)
 
-def scroll_to_page_end(driver):
+def scroll_to_page_end(driver:webdriver.Chrome):
     SCROLL_PAUSE_TIME = 0.5
     last_height = driver.execute_script("return document.body.scrollHeight")
     while True:
@@ -115,5 +120,3 @@ for s in store_list:
         'image_count': images.text
     }
     add_document(document, cl)
-
-print(get_all_documents(cl))

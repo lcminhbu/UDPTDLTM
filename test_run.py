@@ -12,8 +12,8 @@ CONNECTION_STRING = "mongodb+srv://username:Password123@cluster0.g3tu9j6.mongodb
 db = get_database(CONNECTION_STRING, "test")
 cl2 = create_collection("store_info", db)
 
-THREAD_NUMBER = 10
-devided = np.array_split(data['Link'],THREAD_NUMBER)
+THREAD_NUMBER = 15
+devided = np.array_split(data['Link'][:len(data['Link'])//2+1],THREAD_NUMBER)
 
 for d in devided:
     th = Thread(target=thread, args=[d, cl2])

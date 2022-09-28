@@ -9,7 +9,7 @@ from crawler.threads import *
 
 import pandas as pd
 
-data = pd.read_csv('data/Restaurant_list.csv', sep='\t', encoding='utf-8')
+data = pd.read_csv('UDPTDLTM/data/Restaurant_list.csv', sep='\t', encoding='utf-8')
 
 data['Link'] = data['Link'].apply(lambda x: "https://www.foody.vn"+x)
 
@@ -19,13 +19,6 @@ CONNECTION_STRING = mongodb_connection_string
 db = get_database(CONNECTION_STRING, "test")
 cl2 = create_collection("stores_info", db)
 
-# THREAD_NUMBER = 15
-# devided = np.array_split(data['Link'][:len(data['Link'])//2+1],THREAD_NUMBER)
+# multi_thread_get_info(data['Link'][:len(data['Link'])//2+1], 17, cl2)
 
-# for d in devided:
-#     th = Thread(target=thread, args=[d, cl2])
-#     time.sleep(1)
-#     th.start()
-
-
-multi_thread_get_info(data['Link'], 4, cl2)
+collection_to_csv(cl2, "UDPTDLTM/data/store_info_fixed.csv")

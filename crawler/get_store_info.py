@@ -29,6 +29,14 @@ dictionary = {
     "Website": "website"
 }
 
+score_dict = {
+    "Phục vụ": "serve_score",
+    "Chất lượng": "quality_score",
+    "Không gian": "space_score",
+    "Vị trí": "position_score",
+    "Giá cả": "price_score"
+}
+
 def get_parking_lots(driver:webdriver.Chrome):
     checker = driver.find_element_by_xpath('''//span[@ng-bind="data.NearbyParkingPlaces.Items.length + '/' + data.NearbyParkingPlaces.Total"]''').text
     [cur, max] = checker.split('/')
@@ -75,22 +83,35 @@ def get_info(link, driver:webdriver.Chrome):
 
         log.info("Getting scores")
         avg_score = driver.find_element_by_class_name("microsite-point-avg ").text
-        points = driver.find_elements_by_css_selector("div.microsite-top-points > div > span")
-        space_point = -1
-        position_point = -1
-        quality_point = -1
-        serve_point = -1
-        price_point = -1
-        try:
-            space_point = points[0].text
-            position_point = points[1].text
-            quality_point = points[2].text
-            serve_point = points[3].text
-            price_point = points[4].text
-        except:
-            log.warning("Score: list index out of range")
-        log.info("Getting views and food link")
+        points = driver.find_elements_by_css_selector("div.microsite-top-points")
         views = driver.find_element_by_class_name("total-views").find_element_by_tag_name("span").text
+
+        t = {
+            "name": name,
+            "review_count": review_count,
+            "address": addr,
+            "district": district,
+            "average_score": avg_score,
+            "views": views,
+            "food_list": [],
+            "comment_list": []
+        }
+        for p in points:
+            try:
+                try:
+                    score = p.find_element_by_tag_name("span").text
+                except:
+                    score = -1
+                    log.warning("Score not found")
+                finally:
+                    label = p.find_element_by_class_name("label").text
+                    if label not in score_dict:
+                        log.error(label + "not in dictionary")
+                    else:
+                        t[score_dict[label]] = score
+            except:
+                log.warning("Score: list index out of range")
+        log.info("Getting views and food link")
         try:
             driver.find_element_by_class_name("view-all-menu").click()
             food_qr_code = driver.find_element_by_class_name("food-qrcode-footer-btn")
@@ -99,23 +120,7 @@ def get_info(link, driver:webdriver.Chrome):
         except:
             log.info("Food link empty")
             food_link = ""
-        
-        t = {
-            "name": name,
-            "review_count": review_count,
-            "address": addr,
-            "district": district,
-            "average_score": avg_score,
-            "space_score": space_point,
-            "position_score": position_point,
-            "quality_score": quality_point,
-            "serve_score": serve_point,
-            "price_score": price_point,
-            "views": views,
-            "food_link": food_link,
-            "food_list": [],
-            "comment_list": []
-        }
+        t['food_link'] = food_link
 
         log.info("Getting other info")
         other_info = driver.find_elements_by_class_name("new-detail-info-area")

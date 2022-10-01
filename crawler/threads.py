@@ -1,16 +1,18 @@
 import time
 from threading import Lock
 from threading import Thread
-from selenium import webdriver
+from functions.databases import *
 
-import logging
 import numpy as np
 
 from crawler.get_store_info import *
+
 log = logging.getLogger(__name__)
 
 done = 0
 thread_lock = Lock()
+
+
 def thread(link_list, collection):
     global done
     log.info("Thread started")
@@ -18,6 +20,7 @@ def thread(link_list, collection):
     for l in link_list:
         log.info("Link: " + l)
         t = get_info(l, driver)
+        t['link'] = l
         try:
             add_document(t, collection)
             thread_lock.acquire()
@@ -31,7 +34,8 @@ def thread(link_list, collection):
     driver.close()
     log.info("Thread ended")
 
-def multi_thread_get_info(link_list, thread_number, collection, thread = thread, sleep_time = 1):
+
+def multi_thread_get_info(link_list, thread_number, collection, thread=thread, sleep_time=1):
     devided = np.array_split(link_list, thread_number)
 
     for d in devided:

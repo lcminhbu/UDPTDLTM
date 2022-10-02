@@ -1,0 +1,29 @@
+_id, id của quán ăn
+name, tên quán
+review_count, số lượng review
+address, địa chỉ
+district, quận
+average_score, điểm đánh giá trung bình của quán
+space_score, điểm đánh giá về không gian
+position_score, điểm đánh giá về vị trí
+quality_score, điểm đánh giá về chất lượng
+serve_score, điểm đánh giá về phục vụ
+price_score, điểm đánh giá về giá cả
+views, số lượng lượt xem quán
+food_link, đường dẫn của quán ăn trên Shopee/Foody
+food_list, danh sách món ăn
+comment_list, danh sách bình luận
+price_range, giá tiền của các món ăn trong quán từ nhỏ nhất đến lớn nhất
+opening_time, giờ mở cửa
+suitable_time, giờ thích hợp
+prepare_time, thời gian chuẩn bị món
+holiday, hoạt động trong ngày lễ như thế nào
+type, loại quán ăn
+capacity, sức chứa
+style, phong cách món ăn
+suitable_with, phù hợp với
+serves, các món ăn phục vụ
+available, các dịch vụ có sẵn
+parking_lots, chỗ đậu xe
+last_pick_up_time, giờ gọi món sau cùng
+website, website chính thức của quán ăn

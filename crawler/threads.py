@@ -5,9 +5,11 @@ from databases import *
 
 import numpy as np
 import pandas as pd
+import os
 
 from get_store_info import *
 
+os.environ['PATH'] += unix_environ_path
 log = logging.getLogger(__name__)
 
 done = 0
@@ -18,17 +20,22 @@ info_list = []
 def thread(link_list):
     global done, info_list
     log.info("Thread started")
-    driver = webdriver.Edge("msedgedriver.exe")
+    driver = webdriver.Chrome()
     for l in link_list:
-        log.info("Link: " + l)
-        t = get_info(l, driver)
-        t['link'] = l
-        info_list.append(t)
-        thread_lock.acquire()
-        done += 1
-        log.info("Done: " + str(done))
-        thread_lock.release()
-        time.sleep(1)
+        try:
+            log.info("Link: " + l)
+            t = get_info(l, driver)
+            t['link'] = l
+            info_list.append(t)
+            thread_lock.acquire()
+            done += 1
+            log.info("Done: " + str(done))
+            thread_lock.release()
+            time.sleep(1)
+        except Exception as e:
+            log.error("Error while crawling")
+            log.error(e)
+            print(l)
     driver.close()
     log.info("Thread ended")
 

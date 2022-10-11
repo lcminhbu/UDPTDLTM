@@ -1,4 +1,4 @@
-import os
+# import os
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -7,7 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from configuration import *
 
-os.environ['PATH'] += unix_environ_path
+# os.environ['PATH'] += unix_environ_path
+
 
 log = logging.getLogger(__name__)
 
@@ -82,7 +83,6 @@ def get_info(link, driver: webdriver.Chrome):
         addr = driver.find_element_by_xpath('//span[@itemprop="streetAddress"]').text
         district = driver.find_element_by_xpath('//span[@itemprop="addressLocality"]').text
 
-        log.info("Getting scores")
         avg_score = driver.find_element_by_class_name("microsite-point-avg ").text
         points = driver.find_elements_by_css_selector("div.microsite-top-points")
         views = driver.find_element_by_class_name("total-views").find_element_by_tag_name("span").text
@@ -94,8 +94,6 @@ def get_info(link, driver: webdriver.Chrome):
             "district": district,
             "average_score": avg_score,
             "views": views,
-            "food_list": [],
-            "comment_list": []
         }
         for p in points:
             try:
@@ -112,7 +110,6 @@ def get_info(link, driver: webdriver.Chrome):
                         t[score_dict[label]] = score
             except:
                 log.warning("Score: list index out of range")
-        log.info("Getting views and food link")
         try:
             driver.find_element_by_class_name("view-all-menu").click()
             food_qr_code = driver.find_element_by_class_name("food-qrcode-footer-btn")
@@ -123,31 +120,28 @@ def get_info(link, driver: webdriver.Chrome):
             food_link = ""
         t['food_link'] = food_link
 
-        log.info("Getting other info")
         other_info = driver.find_elements_by_class_name("new-detail-info-area")
         for i in other_info:
             label = dictionary[i.find_element_by_css_selector("div:nth-child(1)").text]
             value = i.find_element_by_css_selector("div:nth-child(2)").text
             t[label] = value
 
-        log.info("Getting properties")
         micro_property = driver.find_elements_by_css_selector("div.microsite-res-info-properties > div > div > ul > li")
         t['available'] = []
         for p in micro_property:
             if p.get_attribute("class") != "none":
                 t['available'].append(p.find_element_by_css_selector("a:nth-child(2)").text)
 
-        log.info("Getting branches")
-        try:
-            list_tools = driver.find_element_by_css_selector("ul.list-tool")
-            branch_link = list_tools.find_element_by_link_text("Chi nhánh")
+        # log.info("Getting branches")
+        # try:
+        #     list_tools = driver.find_element_by_css_selector("ul.list-tool")
+        #     branch_link = list_tools.find_element_by_link_text("Chi nhánh")
             # branch_link.click()
             # branch_list = driver.find_element_by_css_selector("ul.ldc-items-list.ldc-column")
             # driver.back()
             # driver.implicitly_wait(15)
-        except:
-            log.info("No branch")
-        log.info("Getting parking lots")
+        # except:
+        #     log.info("No branch")
         try:
             list_tools = driver.find_element_by_css_selector("ul.list-tool")
             parking_lot_link = list_tools.find_element_by_link_text("Bãi đỗ xe")
@@ -156,7 +150,6 @@ def get_info(link, driver: webdriver.Chrome):
         except:
             log.info("No parking lot")
             t['parking_lots'], t['parking_lots_ammount'] = [], 0
-        log.info("Done link: " + link)
         return t
     except Exception as e:
         log.warning("Error while crawling")

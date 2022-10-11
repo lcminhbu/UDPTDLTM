@@ -19,8 +19,8 @@ links = get_all_documents(cl_link)
 # Ví dụ ô f làm 6000 link từ 0 tới 5999. Có thể chia thành 0 tới 1999, rồi chạy 1 lần
 # Khi nào rảnh chạy tiếp từ 2000 tới 3999...
 # Theo t ước tính thì 2000 link chạy mất gần 2 tiếng nếu mạng mạnh
-# Ví dụ lấy link id từ 0 tới 1999
-my_links = links[:2000]
+# Ví dụ lấy link id từ 0 tới 1999: links[0:2000]
+my_links = links[23220:25220]
 
 # Tạo/truy cập collection, thông tin cửa hàng t sẽ lưu ở collection store_info.
 # Mấy ô muốn test j đó thì đổi tên collection thành tên khác nhé. Để nguyên mà test lỗi là toang
@@ -31,7 +31,7 @@ cl = create_collection("store_info", db)
 # Chạy ok thì mấy ô đổi tên thành tên mình hay j đó r chuyển n vào folder logger.
 # Nếu lưu trên mongodb bị lỗi, thì n sẽ tự động chuyển sang lưu và UDPTDLTM/data.csv.
 # Lúc này mấy ô cần đổi tên file thành tên khác r bỏ n vào folder data.
-multi_thread_get_info(my_links['href'], 10, cl)
+multi_thread_get_info(my_links['href'], 5, cl)
 
 # Hàm này dùng để chuyển data trong collection thành file csv lưu ở path được truyền vào.
 # collection_to_csv(cl, 'data/store_info_updated.csv')

@@ -37,7 +37,7 @@ score_dict = {
 
 
 def get_parking_lots(driver: webdriver.Chrome):
-    checker = driver.find_element_by_xpath(
+    checker = driver.find_element("xpath",
         '''//span[@ng-bind="data.NearbyParkingPlaces.Items.length + '/' + data.NearbyParkingPlaces.Total"]''').text
     [cur, max] = checker.split('/')
     cur = int(cur)
@@ -49,7 +49,7 @@ def get_parking_lots(driver: webdriver.Chrome):
             EC.element_to_be_clickable((By.ID, "continueShowReview")))
         see_more_btn = driver.find_element_by_id("continueShowReview")
         see_more_btn.click()
-        checker = driver.find_element_by_xpath(
+        checker = driver.find_element("xpath",
             '''//span[@ng-bind="data.NearbyParkingPlaces.Items.length + '/' + data.NearbyParkingPlaces.Total"]''').text
         cur = int(checker.split('/')[0])
     # parking_lots = driver.find_elements_by_css_selector("#res-nearby-content > div.ldc-items-list.ldc-items-row > div > ul > li")
@@ -78,10 +78,10 @@ def get_info(link, driver: webdriver.Chrome):
         driver.get(link)
         driver.implicitly_wait(15)
 
-        name = driver.find_element_by_xpath('//h1[@itemprop="name"]').text
+        name = driver.find_element("xpath",'//h1[@itemprop="name"]').text
         review_count = driver.find_element_by_class_name("microsite-review-count").text
-        addr = driver.find_element_by_xpath('//span[@itemprop="streetAddress"]').text
-        district = driver.find_element_by_xpath('//span[@itemprop="addressLocality"]').text
+        addr = driver.find_element("xpath",'//span[@itemprop="streetAddress"]').text
+        district = driver.find_element("xpath",'//span[@itemprop="addressLocality"]').text
 
         avg_score = driver.find_element_by_class_name("microsite-point-avg ").text
         points = driver.find_elements_by_css_selector("div.microsite-top-points")

@@ -1,8 +1,5 @@
-import sys
-sys.path.append("./")
-
 from configuration import *
-from functions.databases import *
+from databases import *
 
 import time
 

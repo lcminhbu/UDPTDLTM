@@ -1,101 +1,42 @@
-13:30:17 , 11504 INFO : Thread started
-13:30:18 , 3268 INFO : Thread started
-13:30:18 , 11504 INFO : Link: https://www.foody.vn/ho-chi-minh/mr-khot-banh-khot-vung-tau
-13:30:19 , 2924 INFO : Thread started
-13:30:20 , 6640 INFO : Thread started
-13:30:21 , 10304 INFO : Thread started
-13:30:22 , 6356 INFO : Thread started
-13:30:23 , 3268 INFO : Link: https://www.foody.vn/ho-chi-minh/bun-rieu-co-huong-beo-nguyen-thi-minh-khai
-13:30:23 , 5964 INFO : Thread started
-13:30:24 , 12792 INFO : Thread started
-13:30:26 , 13236 INFO : Thread started
-13:30:27 , 13656 INFO : Thread started
-13:30:29 , 6640 INFO : Link: https://www.foody.vn/ho-chi-minh/co-noi-vegetarian-bong-sen-hotel
-13:30:30 , 2924 INFO : Link: https://www.foody.vn/ho-chi-minh/nakathai-nha-hang-mon-thai-le-duan
-13:30:35 , 10304 INFO : Link: https://www.foody.vn/ho-chi-minh/the-dome-dining-drinks
-13:30:36 , 6356 INFO : Link: https://www.foody.vn/ho-chi-minh/dynasty-house-hongkong-dimsum-hotpot
-13:30:38 , 5964 INFO : Link: https://www.foody.vn/ho-chi-minh/sushi-tei-nguyen-thi-minh-khai
-13:30:50 , 13656 INFO : Link: https://www.foody.vn/ho-chi-minh/huynh-hoa
-13:30:53 , 13236 INFO : Link: https://www.foody.vn/ho-chi-minh/lau-bo-quang-khai-ho-hao-hon
-13:30:56 , 12792 INFO : Link: https://www.foody.vn/ho-chi-minh/boc-kitchen-craft-beer-pub
-13:32:06 , 11504 INFO : Done: 1
-13:32:07 , 6640 INFO : Food link empty
-13:32:07 , 11504 INFO : Link: https://www.foody.vn/ho-chi-minh/chai-village-sushi-hai-san-tuoi-song-saigon-house
-13:32:08 , 10304 INFO : Food link empty
-13:32:09 , 3268 INFO : Done: 2
-13:32:10 , 3268 INFO : Link: https://www.foody.vn/ho-chi-minh/bun-bo-hue-31
-13:32:13 , 12792 INFO : Food link empty
-13:32:15 , 13236 INFO : Done: 3
-13:32:16 , 13236 INFO : Link: https://www.foody.vn/ho-chi-minh/hair-of-the-dog-bar
-13:32:30 , 6356 INFO : Food link empty
-13:32:35 , 2924 INFO : Done: 4
-13:32:36 , 2924 INFO : Link: https://www.foody.vn/ho-chi-minh/goi-cuon-minh-bui-vien
-13:32:55 , 10304 INFO : Done: 5
-13:32:57 , 10304 INFO : Link: https://www.foody.vn/ho-chi-minh/jumbo-seafood
-13:33:00 , 6356 INFO : Done: 6
-13:33:01 , 6356 INFO : Link: https://www.foody.vn/ho-chi-minh/au-lac-do-brazil-phung-khac-khoan
-13:33:07 , 5964 INFO : Food link empty
-13:33:13 , 13236 INFO : Food link empty
-13:33:14 , 11504 INFO : Food link empty
-13:33:15 , 12792 INFO : Done: 7
-13:33:16 , 12792 INFO : Link: https://www.foody.vn/ho-chi-minh/the-refinery
-13:33:19 , 6640 INFO : Done: 8
-13:33:20 , 6640 INFO : Link: https://www.foody.vn/ho-chi-minh/katinat-saigon-kafe-nguyen-du
-13:33:32 , 2924 INFO : Done: 9
-13:33:33 , 2924 INFO : Link: https://www.foody.vn/ho-chi-minh/hu-tieu-bo-kho-truong-han-sieu
-13:33:40 , 3268 INFO : Done: 10
-13:33:41 , 3268 INFO : Link: https://www.foody.vn/ho-chi-minh/com-tam-bui-sai-gon
-13:33:43 , 13656 INFO : Done: 11
-13:33:44 , 13656 INFO : Link: https://www.foody.vn/ho-chi-minh/boc-homemade-bbq
-13:33:47 , 13236 INFO : Done: 12
-13:33:48 , 13236 INFO : Link: https://www.foody.vn/ho-chi-minh/phap-hoa-quan-chay
-13:33:57 , 5964 INFO : Done: 13
-13:33:58 , 5964 INFO : Link: https://www.foody.vn/ho-chi-minh/bun-moc-thanh-mai
-13:34:19 , 6356 INFO : Food link empty
-13:34:24 , 11504 INFO : Done: 14
-13:34:25 , 11504 INFO : Link: https://www.foody.vn/ho-chi-minh/nha-hang-unatoto-com-luon-nhat-ban
-13:34:31 , 10304 INFO : Food link empty
-13:34:31 , 2924 INFO : Food link empty
-13:34:45 , 3268 INFO : Done: 15
-13:34:48 , 6356 INFO : Done: 16
-13:34:49 , 6356 INFO : Link: https://www.foody.vn/ho-chi-minh/jumbo-seafood-tran-hung-dao
-13:34:50 , 12792 INFO : Food link empty
-13:34:51 , 13236 INFO : Done: 17
-13:34:58 , 2924 INFO : Done: 18
-13:34:58 , 10304 INFO : Done: 19
-13:34:58 , 13236 INFO : Thread ended
-13:34:59 , 3268 INFO : Thread ended
-13:34:59 , 10304 INFO : Link: https://www.foody.vn/ho-chi-minh/dynasty-house-phung-khac-khoan
-13:35:05 , 5964 INFO : Done: 20
-13:35:06 , 5964 INFO : Link: https://www.foody.vn/ho-chi-minh/mochi-sweets-77-hai-ba-trung
-13:35:07 , 6640 INFO : Done: 21
-13:35:08 , 6640 INFO : Link: https://www.foody.vn/ho-chi-minh/buffet-trua-sunrise-central-hotel
-13:35:11 , 2924 INFO : Thread ended
-13:35:17 , 12792 INFO : Done: 22
-13:35:18 , 12792 INFO : Link: https://www.foody.vn/ho-chi-minh/telephone-bar
-13:35:20 , 13656 INFO : Done: 23
-13:35:21 , 13656 INFO : Link: https://www.foody.vn/ho-chi-minh/nha-hang-han-quoc-choi-go-jip
-13:35:51 , 5964 INFO : No parking lot
-13:35:51 , 5964 INFO : Done: 24
-13:35:52 , 5964 INFO : Thread ended
-13:36:00 , 11504 INFO : No parking lot
-13:36:00 , 11504 INFO : Done: 25
-13:36:03 , 12792 INFO : Food link empty
-13:36:04 , 6356 INFO : Food link empty
-13:36:05 , 11504 INFO : Thread ended
-13:36:12 , 12792 INFO : No parking lot
-13:36:12 , 12792 INFO : Done: 26
-13:36:13 , 12792 INFO : Thread ended
-13:36:14 , 6356 INFO : Done: 27
-13:36:16 , 6356 INFO : Thread ended
-13:36:22 , 10304 INFO : Food link empty
-13:36:27 , 10304 INFO : Done: 28
-13:36:28 , 10304 INFO : Thread ended
-13:36:33 , 6640 INFO : Food link empty
-13:36:35 , 13656 INFO : Food link empty
-13:36:42 , 6640 INFO : Done: 29
-13:36:43 , 13656 INFO : Done: 30
-13:36:43 , 6640 INFO : Thread ended
-13:36:44 , 13656 INFO : Thread ended
-13:36:44 , 1696 INFO : ALL DONE!!!!!
-13:36:44 , 1696 INFO : 30
+15:59:18 , 12832 INFO : Thread started
+15:59:19 , 5212 INFO : Thread started
+15:59:19 , 12832 INFO : Link: https://www.foody.vn/ho-chi-minh/mr-khot-banh-khot-vung-tau
+15:59:20 , 6648 INFO : Thread started
+15:59:21 , 13988 INFO : Thread started
+15:59:22 , 17352 INFO : Thread started
+15:59:23 , 20760 INFO : Thread started
+15:59:23 , 5212 INFO : Link: https://www.foody.vn/ho-chi-minh/banh-mi-cha-ca-nha-trang
+15:59:24 , 5448 INFO : Thread started
+15:59:24 , 6648 INFO : Link: https://www.foody.vn/ho-chi-minh/oia-castle-am-thuc-dia-trung-hai-hy-lap-mexico
+15:59:25 , 15208 INFO : Thread started
+15:59:26 , 13988 INFO : Link: https://www.foody.vn/ho-chi-minh/mong-kok-roast-noodles
+15:59:26 , 22656 INFO : Thread started
+15:59:27 , 17352 INFO : Link: https://www.foody.vn/ho-chi-minh/mien-pho-ga-43-mac-dinh-chi-tran-cao-van
+15:59:27 , 6896 INFO : Thread started
+15:59:28 , 20760 INFO : Link: https://www.foody.vn/ho-chi-minh/nha-hang-le-jardin
+15:59:30 , 5448 INFO : Link: https://www.foody.vn/ho-chi-minh/subway-nowzone
+15:59:32 , 15208 INFO : Link: https://www.foody.vn/ho-chi-minh/mandarine-am-thuc-3-mien
+15:59:34 , 22656 INFO : Link: https://www.foody.vn/ho-chi-minh/go-cafe-thach-thi-thanh
+15:59:41 , 6896 INFO : Link: https://www.foody.vn/ho-chi-minh/bula-bento-com-trua-an-toi-nguyen-thi-minh-khai
+16:00:22 , 5448 WARNING : Error while crawling
+16:00:22 , 5448 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 6896 WARNING : Error while crawling
+16:00:22 , 6896 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 15208 WARNING : Error while crawling
+16:00:22 , 15208 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 20760 WARNING : Error while crawling
+16:00:22 , 20760 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 5212 WARNING : Error while crawling
+16:00:22 , 5212 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 6648 WARNING : Error while crawling
+16:00:22 , 6648 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 12832 INFO : No parking lot
+16:00:22 , 22656 WARNING : Error while crawling
+16:00:22 , 12832 INFO : Done: 1
+16:00:22 , 22656 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 13988 WARNING : Error while crawling
+16:00:22 , 13988 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:22 , 17352 WARNING : Error while crawling
+16:00:22 , 17352 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+16:00:23 , 12832 INFO : Link: https://www.foody.vn/ho-chi-minh/chai-village-sushi-hai-san-tuoi-song-saigon-house
+16:00:27 , 12832 WARNING : Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E0148FD220>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/f7f1a8173659457cfe4cf74bbcbbdbde/url

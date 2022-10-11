@@ -7,7 +7,7 @@ foody_account = {
 
 foody_link = "https://www.foody.vn/ho-chi-minh"
 
-mongodb_connection_string = "mongodb+srv://username:Password123@cluster0.g3tu9j6.mongodb.net/test"
+mongodb_connection_string = "mongodb+srv://username:Password123@udptdltm-data.ocmcsqz.mongodb.net/test"
 
 import logging
 logging.basicConfig(filename="logger.log",

@@ -1,12 +1,9 @@
 import sys
-sys.path.append(__file__[:__file__.find('UDPTDLTM/')+9])
-# For notebook: sys.path.append("..")
-
+sys.path.append("./")
 
 from configuration import *
 from functions.databases import *
 
-import os
 import time
 
 from selenium import webdriver
@@ -14,14 +11,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+driver = webdriver.Chrome('chromedriver.exe')
+# driver = webdriver
 
-os.environ['PATH'] += unix_environ_path
-
-driver = webdriver.Chrome()
-
-driver.get(foody_link)
-
-def login(username, password):
+def login(username, password, driver:webdriver.Chrome):
     login_button = driver.find_element_by_css_selector("#accountmanager > a")
     login_button.click()
     driver.implicitly_wait(15)
@@ -44,34 +37,27 @@ def scroll_to_page_end(driver:webdriver.Chrome):
             break
         last_height = new_height
 
-def see_more():
+def see_more(driver:webdriver.Chrome, max_click=200):
     SCROLL_PAUSE_TIME = 0.5
     last_height = driver.execute_script("return document.body.scrollHeight")
     new_height = last_height + 1
     driver.implicitly_wait(15)
     count = 1
-    while count<=2:
-        print(count)
+    while count<=max_click:
         time.sleep(SCROLL_PAUSE_TIME)
         try:
-            WebDriverWait(driver, 30).until(
+            WebDriverWait(driver, 10).until(
                                 EC.element_to_be_clickable((By.CSS_SELECTOR, "#ajaxRequestDiv > div > div.content-container.fd-clearbox.ng-scope > div.pn-loadmore.fd-clearbox.ng-scope > a")))
             see_more_btn = driver.find_element_by_css_selector("#ajaxRequestDiv > div > div.content-container.fd-clearbox.ng-scope > div.pn-loadmore.fd-clearbox.ng-scope > a")
             see_more_btn.click()
             count += 1
             driver.implicitly_wait(15)
-            while True:
-                last_height = new_height
-                new_height = driver.execute_script("return document.body.scrollHeight")
-                if new_height > last_height:
-                    break
-                else:
-                    time.sleep(SCROLL_PAUSE_TIME)
         except Exception as e: 
             print(e)
             break
+    print(count)
 
-def get_all_category_region_district():
+def get_all_category_region_district(driver:webdriver.Chrome):
     category_element = driver.find_element_by_css_selector("#tbt > ul > li:nth-child(7) > select")
     categories = category_element.find_elements_by_tag_name("option")
     categories.remove(categories[0])
@@ -84,39 +70,45 @@ def get_all_category_region_district():
 
     return categories, regions, districts
 
-login(foody_account['username'], foody_account['password'])
+def get_list(district_id, max_click = 200):
+    driver = webdriver.Chrome('chromedriver.exe')
+    driver.get(foody_link)
+    login(foody_account['username'], foody_account['password'], driver)
+    categories, regions, districts = get_all_category_region_district(driver)
+    print(districts[district_id].text)
+    districts[district_id].click()
+    # categories[0].click()
+    # regions[0].click()
+    # newest_button = driver.find_element_by_css_selector("#tbt > ul > li:nth-child(2) > a")
+    # newest_button.click()
 
-categories, regions, districts = get_all_category_region_district()
+    # nearest_button = driver.find_element_by_css_selector("#tbt > ul > li:nth-child(2) > a")
+    # nearest_button.click()
+    see_more(driver, max_click)
+    scroll_to_page_end(driver)
+    store_list = driver.find_element_by_css_selector("#ajaxRequestDiv > div > div.content-container.fd-clearbox.ng-scope")
+    store_list = store_list.find_elements_by_class_name("content-item.ng-scope")
+    print(len(store_list))
+    l = []
+    count = 0
+    for s in store_list:
+        count += 1
+        title = s.find_element_by_class_name("title.fd-text-ellip")
+        # address = s.find_element_by_class_name("desc.fd-text-ellip.ng-binding")
+        # comments = s.find_element_by_css_selector("div.items-count > a:nth-child(1) > span")
+        # images = s.find_element_by_css_selector("div.items-count > a:nth-child(2) > span")
+        l.append({
+            'store_name': title.text,
+            'href': title.find_element_by_tag_name("a").get_attribute('href'),
+            # 'address': address.text,
+            # 'comment_count': comments.text,
+            # 'image_count': images.text
+        })
+    print("done")
+    driver.quit()
+    return l
 
-# categories[0].click()
-# regions[0].click()
-# newest_button = driver.find_element_by_css_selector("#tbt > ul > li:nth-child(2) > a")
-# newest_button.click()
-
-# nearest_button = driver.find_element_by_css_selector("#tbt > ul > li:nth-child(2) > a")
-# nearest_button.click()
-districts[0].click()
-
-see_more()
-scroll_to_page_end(driver)
-
-store_list = driver.find_element_by_css_selector("#ajaxRequestDiv > div > div.content-container.fd-clearbox.ng-scope")
-store_list = store_list.find_elements_by_class_name("content-item.ng-scope")
-print(len(store_list))
-
-
-db = get_database(mongodb_connection_string, "test")
-cl = create_collection("store_link", db)
-for s in store_list:
-    title = s.find_element_by_class_name("title.fd-text-ellip")
-    address = s.find_element_by_class_name("desc.fd-text-ellip.ng-binding")
-    comments = s.find_element_by_css_selector("div.items-count > a:nth-child(1) > span")
-    images = s.find_element_by_css_selector("div.items-count > a:nth-child(2) > span")
-    document = {
-        'store_name': title.text,
-        'href': title.find_element_by_tag_name("a").get_attribute('href'),
-        'address': address.text,
-        'comment_count': comments.text,
-        'image_count': images.text
-    }
-    add_document(document, cl)
+db = get_database(mongodb_connection_string, "udptdltm-database")
+cl = create_collection("store_links", db)
+for i in range(6, 24):
+    add_document(get_list(i), cl)

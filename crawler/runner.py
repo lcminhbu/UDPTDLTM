@@ -1,17 +1,8 @@
-# NOTE: mấy ô cần đảm bảo cài chromedriver.exe rồi và thêm n vào system environment path của máy rồi
-# thì mới chạy được nhé. K thì mấy ô f chỉnh link dẫn tới chromedriver.exe ở file threads.py
+# NOTE: mấy ô cần đảm bảo cài edgedriver.exe rồi và thêm n vào system environment path của máy rồi
+# thì mới chạy được nhé. K thì mấy ô f chỉnh link dẫn tới edgedriver.exe ở file threads.py
 
-# NOTE: đoạn liên quan đến sys cần chạy để import được các file khác trong folder.
-# Mấy ô cần chắc là khi chạy mình đang cd vào thư mục UDPTDLTM.
-
-import sys
-# For linux: sys.path.append(__file__[:__file__.find('UDPTDLTM/') + 9])
-# For notebook: sys.path.append("..")
-# sys.path.append("./") # Windows
-sys.path.append("./")
-
-from crawler.threads import *
-from functions.databases import *
+from threads import *
+from databases import *
 
 # Lấy database, mongodb_connection_string t lưu ở file UDPTDLTM/configuration; tên database là udptdltm-database
 # Phần này mấy ô k cần thay đổi tham số, để truy cập được vào db của t.

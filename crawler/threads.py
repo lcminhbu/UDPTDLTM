@@ -1,12 +1,12 @@
 import time
 from threading import Lock
 from threading import Thread
-from functions.databases import *
+from databases import *
 
 import numpy as np
 import pandas as pd
 
-from crawler.get_store_info import *
+from get_store_info import *
 
 log = logging.getLogger(__name__)
 

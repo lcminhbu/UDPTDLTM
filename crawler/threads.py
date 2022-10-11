@@ -9,7 +9,7 @@ import os
 
 from get_store_info import *
 
-os.environ['PATH'] += unix_environ_path
+# os.environ['PATH'] += unix_environ_path
 log = logging.getLogger(__name__)
 
 done = 0
@@ -20,7 +20,8 @@ info_list = []
 def thread(link_list):
     global done, info_list
     log.info("Thread started")
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
+    driver = webdriver.Edge("msedgedriver.exe")
     for l in link_list:
         try:
             log.info("Link: " + l)

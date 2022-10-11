@@ -4,15 +4,15 @@
 # NOTE: đoạn liên quan đến sys cần chạy để import được các file khác trong folder.
 # Mấy ô cần chắc là khi chạy mình đang cd vào thư mục UDPTDLTM.
 
-import sys
+# import sys
 
 # For linux: sys.path.append(__file__[:__file__.find('UDPTDLTM/') + 9])
 # For notebook: sys.path.append("..")
 # sys.path.append("./") # Windows
-sys.path.append("./")
+# sys.path.append("./")
 
-from crawler.threads import *
-from crawler.databases import *
+from threads import *
+from databases import *
 
 # Lấy database, mongodb_connection_string t lưu ở file UDPTDLTM/configuration; tên database là udptdltm-database
 # Phần này mấy ô k cần thay đổi tham số, để truy cập được vào db của t.

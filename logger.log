@@ -1,0 +1,52 @@
+15:36:15 , 15784 INFO : Thread started
+15:36:16 , 14624 INFO : Thread started
+15:36:17 , 15784 INFO : Link: https://www.foody.vn/ho-chi-minh/mr-khot-banh-khot-vung-tau
+15:36:17 , 16316 INFO : Thread started
+15:36:18 , 5400 INFO : Thread started
+15:36:19 , 18992 INFO : Thread started
+15:36:20 , 18424 INFO : Thread started
+15:36:20 , 14624 INFO : Link: https://www.foody.vn/ho-chi-minh/highlands-coffee-mac-dinh-chi
+15:36:21 , 13132 INFO : Thread started
+15:36:22 , 16316 INFO : Link: https://www.foody.vn/ho-chi-minh/cocotte-casual-bistro-nguyen-thi-minh-khai
+15:36:23 , 9696 INFO : Thread started
+15:36:23 , 5400 INFO : Link: https://www.foody.vn/ho-chi-minh/hong-hien-tra-dau-dong-du
+15:36:24 , 18948 INFO : Thread started
+15:36:25 , 18992 INFO : Link: https://www.foody.vn/ho-chi-minh/pho-hien-1988
+15:36:25 , 9992 INFO : Thread started
+15:36:26 , 20984 INFO : Thread started
+15:36:28 , 17460 INFO : Thread started
+15:36:29 , 18424 INFO : Link: https://www.foody.vn/ho-chi-minh/tasty-kitchen-nguyen-trai
+15:36:29 , 13132 INFO : Link: https://www.foody.vn/ho-chi-minh/nha-hang-chay-vi-que-kitchen
+15:36:29 , 21376 INFO : Thread started
+15:36:37 , 9696 INFO : Link: https://www.foody.vn/ho-chi-minh/long-cha-huong-vi-hong-kong
+15:36:41 , 18948 INFO : Link: https://www.foody.vn/ho-chi-minh/brodard-gourmet-bakery-dong-khoi
+15:36:45 , 17460 INFO : Link: https://www.foody.vn/ho-chi-minh/com-tam-dem-co-bac
+15:36:46 , 9992 INFO : Link: https://www.foody.vn/ho-chi-minh/tropicana-sushi-salad
+15:36:46 , 20984 INFO : Link: https://www.foody.vn/ho-chi-minh/chao-ech-singapore-bui-thi-xuan
+15:36:49 , 21376 INFO : Link: https://www.foody.vn/ho-chi-minh/breadtalk-vincom
+15:36:50 , 13132 WARNING : Error while crawling
+15:36:50 , 13132 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:50 , 18992 WARNING : Error while crawling
+15:36:50 , 18992 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:50 , 18424 WARNING : Error while crawling
+15:36:50 , 18424 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:50 , 5400 WARNING : Error while crawling
+15:36:50 , 5400 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:50 , 15784 WARNING : Error while crawling
+15:36:50 , 15784 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:50 , 16316 WARNING : Error while crawling
+15:36:50 , 16316 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:50 , 14624 WARNING : Error while crawling
+15:36:50 , 14624 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:51 , 18948 WARNING : Error while crawling
+15:36:51 , 18948 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:51 , 9992 WARNING : Error while crawling
+15:36:51 , 9992 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:51 , 20984 WARNING : Error while crawling
+15:36:51 , 20984 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:51 , 17460 WARNING : Error while crawling
+15:36:51 , 17460 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:51 , 21376 WARNING : Error while crawling
+15:36:51 , 21376 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+15:36:51 , 9696 WARNING : Error while crawling
+15:36:51 , 9696 ERROR : ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))

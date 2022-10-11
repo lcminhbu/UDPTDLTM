@@ -18,7 +18,7 @@ info_list = []
 def thread(link_list):
     global done, info_list
     log.info("Thread started")
-    driver = webdriver.Chrome("chromedriver.exe")
+    driver = webdriver.Edge("msedgedriver.exe")
     for l in link_list:
         log.info("Link: " + l)
         t = get_info(l, driver)

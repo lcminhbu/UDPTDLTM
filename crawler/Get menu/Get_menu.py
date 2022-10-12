@@ -71,13 +71,13 @@ def handle_menu(link_list, mongodb_collection):
     return menu_list
 
 
-def get_menu_information(link_dataframe, start_index, end_index, mongodb_collection, thread=10):
+def get_menu_information(link_dataframe, start_index, end_index, mongodb_collection, thread=12):
     menu = []
     links = link_dataframe['href'].tolist()[start_index:end_index]
     print(len(links))
-    links = [index.replace('https://www.foody.vn', '') for index in links]
+    links = [index.replace('https://www.foody.vn', '') for index in links if index is not None]
     divide = int(len(links)/thread)
-    data_divide = [links[i:i + thread] for i in range(0, len(links), divide)]
+    data_divide = [links[i:i + divide] for i in range(0, len(links), divide)]
     print(len(data_divide))
     my_threads = []
     for index in range(len(data_divide)):
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     # LƯU Ý
     # test-menu dùng để test
     # official-menu dùng cho chính thức
-    menu_collection = db_menu['menu']['test-menu']
+    menu_collection = db_menu['menu']['official-menu']
     # muốn bao nhiêu thread thì set tham số thread = ...
     # 16GB RAM thì tầm 10-12 thread là lag rồi, nên cân nhắc
     # Đăng: 0->5804

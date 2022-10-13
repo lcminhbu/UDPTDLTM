@@ -30,18 +30,16 @@ class ThreadWithReturnValue(Thread):
 
 def handle_menu(link_list, mongodb_collection):
     menu_list = []
+    driver = webdriver.Edge()
     for index in range(len(link_list)):
         print(f"{index}-{len(link_list)}")
         menu = []
         try:
-            driver = webdriver.Edge()
-            print(link_list[index])
             driver.get("https://www.shopeefood.vn" + link_list[index])
             time.sleep(2)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             check_available = soup.find(class_="txt-bold font15")
             if check_available and check_available.text == "Rất tiếc, bài viết không tồn tại !":
-                driver.close()
                 menu_list.append(
                     [link_list[index], None, None])
                 mongodb_collection.insert_one(
@@ -56,7 +54,6 @@ def handle_menu(link_list, mongodb_collection):
                     soup = BeautifulSoup(driver.page_source, 'html.parser')
                     data_sample = soup.findAll(class_="item-restaurant-row")
                     menu.extend(data_sample)
-                driver.close()
                 menu = pd.unique(menu).tolist()
                 for disk in menu:
                     menu_list.append(
@@ -67,7 +64,7 @@ def handle_menu(link_list, mongodb_collection):
                 time.sleep(randint(1, 4))
         except Exception as e:
             print(e)
-
+    driver.close()
     return menu_list
 
 
@@ -100,7 +97,7 @@ if __name__ == "__main__":
     # LƯU Ý
     # test-menu dùng để test
     # official-menu dùng cho chính thức
-    menu_collection = db_menu['menu']['official-menu']
+    menu_collection = db_menu['menu']['test-menu']
     # muốn bao nhiêu thread thì set tham số thread = ...
     # 16GB RAM thì tầm 10-12 thread là lag rồi, nên cân nhắc
     # Đăng: 0->5804

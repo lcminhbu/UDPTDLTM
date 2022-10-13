@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+import time
 
 from configuration import *
 
@@ -37,12 +38,17 @@ score_dict = {
 
 
 def get_parking_lots(driver: webdriver.Chrome):
-    driver.implicitly_wait(15)
-    checker = driver.find_element("xpath",
-                                  '''//span[@ng-bind="data.NearbyParkingPlaces.Items.length + '/' + data.NearbyParkingPlaces.Total"]''').text
-    [cur, max] = checker.split('/')
-    cur = int(cur)
-    max = int(max)
+    while True:
+        driver.implicitly_wait(15)
+        checker = driver.find_element("xpath",
+                                    '''//span[@ng-bind="data.NearbyParkingPlaces.Items.length + '/' + data.NearbyParkingPlaces.Total"]''').text
+        [cur, max] = checker.split('/')
+        try:
+            cur = int(cur)
+            max = int(max)
+            break
+        except:
+            time.sleep(0.5)
     if max == 0:
         return [], 0
     while cur < max:
@@ -156,3 +162,5 @@ def get_info(link, driver: webdriver.Chrome):
     except Exception as e:
         log.warning("Error while crawling")
         log.error(e)
+
+print(get_info("https://www.foody.vn/ho-chi-minh/anh-tuk-am-thuc-thai-lan", webdriver.Chrome()))

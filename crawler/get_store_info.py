@@ -163,4 +163,3 @@ def get_info(link, driver: webdriver.Chrome):
         log.warning("Error while crawling")
         log.error(e)
 
-print(get_info("https://www.foody.vn/ho-chi-minh/anh-tuk-am-thuc-thai-lan", webdriver.Chrome()))

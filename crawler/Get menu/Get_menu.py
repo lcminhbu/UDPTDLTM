@@ -34,7 +34,7 @@ def handle_menu(link_list, mongodb_collection):
         print(f"{index}-{len(link_list)}")
         menu = []
         try:
-            driver = webdriver.Edge()
+            driver = webdriver.Chrome()
             print(link_list[index])
             driver.get("https://www.shopeefood.vn" + link_list[index])
             time.sleep(2)
@@ -109,4 +109,4 @@ if __name__ == "__main__":
     # Thắng: 17415->23219
     # Bửu: 23220->29024
     # ví dụ lấy từ index 0->29
-    get_menu_information(link_dataframe, 0, 30, menu_collection)
+    get_menu_information(link_dataframe, 23220, 25220, menu_collection, 8)

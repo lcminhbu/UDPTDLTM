@@ -9,7 +9,7 @@ import os
 
 from get_store_info import *
 
-os.environ['PATH'] += unix_environ_path
+# os.environ['PATH'] += unix_environ_path
 log = logging.getLogger(__name__)
 
 done = 0
@@ -20,8 +20,8 @@ info_list = []
 def thread(link_list):
     global done, info_list
     log.info("Thread started")
-    driver = webdriver.Chrome()
-    # driver = webdriver.Edge("msedgedriver.exe")
+    # driver = webdriver.Chrome()
+    driver = webdriver.Edge("msedgedriver.exe")
     for l in link_list:
         try:
             log.info("Link: " + l)
@@ -51,20 +51,13 @@ def multi_thread_get_info(link_list, thread_number, collection, thread=thread, s
         th.start()
     for th in ths:
         th.join()
-    print("Wanna save?")
-    choose = int(input())
-    if choose:
-        try:
-            add_document(info_list, collection)
-        except Exception as e:
-            df = pd.DataFrame(info_list)
-            df.to_csv("data.csv")
-            log.error("Error while adding document to collection: ")
-            log.error(e)
-
-        log.info("ALL DONE!!!!!")
-        log.info(len(info_list))
-    else:
-        print("OK")
-
+    try:
+        add_document(info_list, collection)
+    except Exception as e:
+        df = pd.DataFrame(info_list)
+        df.to_csv("data.csv")
+        log.error("Error while adding document to collection: ")
+        log.error(e)
+    log.info("ALL DONE!!!!!")
+    log.info(len(info_list))
     

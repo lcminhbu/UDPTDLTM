@@ -162,4 +162,3 @@ def get_info(link, driver: webdriver.Chrome):
     except Exception as e:
         log.warning("Error while crawling")
         log.error(e)
-

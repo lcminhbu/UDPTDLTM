@@ -1,0 +1,7 @@
+- MongoDB URI String : mongodb+srv://analytics:analytics-password@cluster0.orpccey.mongodb.net/?retryWrites=true&w=majority
+- Tên Database: UDPTDLTM
+- Danh sách các Collections:
+	- Comment sample: 500 records.
+	- Comments: 1320 records. (Đừng sử dụng collection này, data bị sai)
+	- Comments 3: 2500 records.
+	- Comments_2: 4182 records. (Bản đầy đủ nhất)
